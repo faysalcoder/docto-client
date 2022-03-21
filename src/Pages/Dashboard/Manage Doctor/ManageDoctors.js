@@ -9,10 +9,11 @@ import { Link } from 'react-router-dom';
 
 const Managedoctors = () => {
     const { doctors, setdoctors } = usedoctors();
+    console.log(doctors)
     const deltedoctor = id => {
         const proceed = window.confirm('Are you Sure to delete this doctor? ')
         if (proceed) {
-            const url = `https://infinite-castle-70516.herokuapp.com/doctors/${id}`;
+            const url = `http://localhost:5000/doctors/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
@@ -57,7 +58,7 @@ const Managedoctors = () => {
                                     </TableCell>
                                     <TableCell align="center">{doctor.name}</TableCell>
                                     <TableCell align="center">{doctor.price}</TableCell>
-                                    <TableCell align="center">{doctor.description.slice(0, 50)}...</TableCell>
+                                    {/* <TableCell align="center">{doctor.description.slice(0, 50)}...</TableCell> */}
                                     <TableCell align="center"><Button onClick={() => deltedoctor(doctor._id)} sx={{ backgroundColor: red[500], color: '#1E1E1E', fontWeight: 'bold' }} startIcon={<DeleteIcon />} >Delete</Button></TableCell>
 
                                 </TableRow>

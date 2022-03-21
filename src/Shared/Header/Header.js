@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 
 const Headers = () => {
-    const { handleLogOut, user } = useAuth()
+    const { handleLogOut, user, admin } = useAuth()
     return (
 
 
@@ -20,7 +20,8 @@ const Headers = () => {
                         <Nav.Link as={Link} className='text-light fw-bold' to='/home'>Home</Nav.Link>
                         <Nav.Link as={Link} to='/explore' className='text-light fw-bold'>Explore</Nav.Link>
                         {
-                            user.email && <Nav.Link as={Link} to='/dashboard' className='text-light fw-bold'>Dasboard</Nav.Link>
+                            admin ? <Nav.Link as={Link} to='/dashboard' className='text-light fw-bold'>Dasboard</Nav.Link> : 
+                            <Nav.Link as={Link} to='/profile' className='text-light fw-bold'>Profile</Nav.Link>
                         }
                         {
 

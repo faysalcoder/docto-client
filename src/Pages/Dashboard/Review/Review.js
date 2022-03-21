@@ -24,7 +24,7 @@ const Review = () => {
 
     }
     const handleReviewField = e => {
-        fetch('https://infinite-castle-70516.herokuapp.com/reviews', {
+        fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

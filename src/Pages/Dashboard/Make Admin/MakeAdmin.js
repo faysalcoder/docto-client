@@ -5,7 +5,7 @@ const MakeAdmin = () => {
     const [users, setUsers] = useState([])
     const [email, setEmail] = useState('')
     useEffect(() => {
-        fetch('https://infinite-castle-70516.herokuapp.com/users')
+        fetch('http://localhost:5000/users')
             .then(res => res.json())
             .then(data => setUsers(data))
     }, [])
@@ -19,7 +19,7 @@ const MakeAdmin = () => {
     const handleMakeAdmin = e => {
         const user = { email };
         console.log(user)
-        fetch('https://infinite-castle-70516.herokuapp.com/users/admin', {
+        fetch('http://localhost:5000/users/admin', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

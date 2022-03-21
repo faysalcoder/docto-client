@@ -5,11 +5,11 @@ import { yellow } from '@mui/material/colors';
 import SkeletonProvider from '../../../Shared/SkeletonProvider/SkeletonProvider';
 
 const ManageAllAppointments = () => {
-    const { Appointments, confirmAppointment, isLoading } = useAppointments();
+    const { appointments, confirmAppointment, isLoading } = useAppointments();
     if (isLoading) {
         return <SkeletonProvider></SkeletonProvider>
     }
-    console.log(Appointments)
+    console.log(appointments)
     return (
         <div>
             <Typography variant='h4' style={{ color: '#18A3DD', fontWeight: 'bold', margin: '20px' }}>Manage all Appointments</Typography>
@@ -31,7 +31,7 @@ const ManageAllAppointments = () => {
                         </TableHead>
 
                         <TableBody>
-                            {Appointments.map(Appointment => (
+                            {appointments.map(Appointment => (
                                 <TableRow key={Appointment._id}>
                                     <TableCell component="th" scope="row">
                                         {Appointment.name}

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 
 const useDoctors = () => {
     const [isLoading, setIsLoading] = useState(true)
-    const [Doctors, setDoctors] = useState([])
+    const [doctors, setDoctors] = useState([])
     useEffect(() => {
         setIsLoading(true)
-        const url = 'https://infinite-castle-70516.herokuapp.com/doctors'
+        const url = 'http://localhost:5000/doctors'
         fetch(url)
             .then(res => res.json())
             .then(data => setDoctors(data))
@@ -13,7 +13,7 @@ const useDoctors = () => {
     }, [])
 
     return {
-        Doctors,
+        doctors,
         setDoctors,
         isLoading
 

@@ -3,9 +3,9 @@ import { useEffect, useState } from "react"
 const useAppointments = () => {
     const [isLoading, setIsLoading] = useState(true)
 
-    const [Appointments, setAppointments] = useState([]);
+    const [appointments, setAppointments] = useState([]);
     useEffect(() => {
-        fetch('https://infinite-castle-70516.herokuapp.com/Appointments')
+        fetch('http://localhost:5000/Appointments')
             .then(res => res.json())
             .then(data => {
                 setAppointments(data)
@@ -18,7 +18,7 @@ const useAppointments = () => {
 
 
 
-        const url = `https://infinite-castle-70516.herokuapp.com/Appointments/${id}`;
+        const url = `http://localhost:5000/Appointments/${id}`;
         fetch(url, {
             method: 'DELETE'
         })
@@ -26,7 +26,7 @@ const useAppointments = () => {
             .then(data => {
                 if (data.deletedCount > 0) {
 
-                    const remindAppointments = Appointments.filter(Appointment => Appointment._id !== id)
+                    const remindAppointments = appointments.filter(Appointment => Appointment._id !== id)
                     setAppointments(remindAppointments);
                     return alert('Delete Succesfully');
                 }
@@ -38,7 +38,7 @@ const useAppointments = () => {
     }
     const confirmAppointment = id => {
         const uniqueId = { AppointmentId: id }
-        fetch('https://infinite-castle-70516.herokuapp.com/Appointments/confirm', {
+        fetch('http://localhost:5000/Appointments/confirm', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -53,7 +53,7 @@ const useAppointments = () => {
     }
 
     return {
-        Appointments,
+        appointments,
         setAppointments,
         deleteAppointment,
         confirmAppointment,

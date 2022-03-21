@@ -6,7 +6,7 @@ import usedoctors from '../../../Hooks/useDoctors'
 
 const DashboardHome = () => {
     const { user, admin } = useAuth()
-    const { Appointments } = useAppointments()
+    const { appointments } = useAppointments()
     const { doctors } = usedoctors()
     return (
         <div>
@@ -30,11 +30,11 @@ const DashboardHome = () => {
                             admin && <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ my: '20px' }}>
                                 <Grid item xs={2} sm={4} md={6} style={{ backgroundColor: '#FFCA28', padding: '20px' }}>
                                     <Typography variant="h5" style={{ color: 'white', fontWeight: 'bold' }}>Total Appointments</Typography> <br />
-                                    <Typography variant="h4" style={{ color: 'white', fontWeight: 'bold', padding: '20px' }}>{Appointments.length}</Typography>
+                                    {/* <Typography variant="h4" style={{ color: 'white', fontWeight: 'bold', padding: '20px' }}>{appointments.length}</Typography> */}
                                 </Grid>
                                 <Grid item xs={2} sm={4} md={6} style={{ backgroundColor: '#0E66A1', padding: '20px' }}>
                                     <Typography variant="h5" style={{ color: 'white', fontWeight: 'bold' }}>Total doctors</Typography> <br />
-                                    <Typography variant="h4" style={{ color: 'white', fontWeight: 'bold', padding: '20px' }}>{doctors.length}</Typography>
+                                    {/* <Typography variant="h4" style={{ color: 'white', fontWeight: 'bold', padding: '20px' }}>{doctors.length}</Typography> */}
                                 </Grid>
                                 <Grid item xs={2} sm={4} md={6} style={{ backgroundColor: '#D45044', padding: '20px' }}>
 
