@@ -5,6 +5,7 @@ import useAuth from '../Hooks/useAuth';
 import SkeletonProvider from '../Shared/SkeletonProvider/SkeletonProvider';
 
 
+
 const AdminRoute = ({ children, ...rest }) => {
     const { user, isLoading, admin } = useAuth();
     if (isLoading) {

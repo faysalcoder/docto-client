@@ -62,7 +62,7 @@ export default function CustomizedDialogs() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Open dialog
+        Review A Doctor
       </Button>
       <BootstrapDialog
         onClose={handleClose}
@@ -70,14 +70,14 @@ export default function CustomizedDialogs() {
         open={open}
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
+          Doctor Review
         </BootstrapDialogTitle>
         <DialogContent dividers>
-         <Review></Review>
+          <Review></Review>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>
-            Save changes
+            Cancel
           </Button>
         </DialogActions>
       </BootstrapDialog>

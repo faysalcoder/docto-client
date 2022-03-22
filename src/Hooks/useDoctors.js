@@ -8,7 +8,7 @@ const useDoctors = () => {
         const url = 'http://localhost:5000/doctors'
         fetch(url)
             .then(res => res.json())
-            .then(data => setDoctors(data))
+            .then(data => setDoctors(data.doctors))
         setIsLoading(false)
     }, [])
 

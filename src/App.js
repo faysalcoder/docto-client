@@ -10,6 +10,7 @@ import Register from './Pages/Login/Register/Register';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import NotFound from './Pages/Not Found/NotFound';
+import PlaceAppointment from './Pages/PlaceAppointment/PlaceAppointment';
 
 function App() {
   return (
@@ -33,8 +34,8 @@ function App() {
           <Route path="/register">
             <Register></Register>
           </Route>
-          <PrivateRoute path="/Appointment/:id">
-
+          <PrivateRoute path="/placeappointment/:id">
+            <PlaceAppointment></PlaceAppointment>
           </PrivateRoute>
           <Route exact path="*">
             <NotFound></NotFound>

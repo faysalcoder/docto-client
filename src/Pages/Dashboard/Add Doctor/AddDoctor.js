@@ -34,8 +34,8 @@ const AddDoctor = () => {
             <form onSubmit={handleAddDoctor}>
                 <TextField onBlur={handleFieldValue} sx={{ width: '50%', m: 1 }} type="text" name="name" id="doctor-name" label="doctor Name" variant="standard" /> <br />
                 <TextField onBlur={handleFieldValue} sx={{ width: '50%', m: 1 }} type="text" name="image" id="image-url" label="Image Url" variant="standard" /> <br />
-                <TextField onBlur={handleFieldValue} sx={{ width: '50%', m: 1 }} type="text" name="desination" id="degisnation" label="doctor designation" variant="standard" /> <br />
-                <TextField onBlur={handleFieldValue} sx={{ width: '50%', m: 1 }} type="text" name="description" id="description" label="Description" variant="standard" /> <br />
+                <TextField onBlur={handleFieldValue} sx={{ width: '50%', m: 1 }} type="text" name="designation" id="deigsnation" label="doctor designation" variant="standard" /> <br />
+                <TextField onBlur={handleFieldValue} sx={{ width: '50%', m: 1 }} type="text" name="fees" id="fees" label="Fees" variant="standard" /> <br />
                 <Button sx={{ width: '25%', m: 1 }} type="submit" variant="contained">Add doctor</Button>
                 <Button sx={{ width: '25%', m: 1 }} type="reset" variant="contained">Reset</Button>
             </form>

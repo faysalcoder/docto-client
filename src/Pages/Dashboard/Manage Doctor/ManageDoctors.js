@@ -4,11 +4,12 @@ import usedoctors from '../../../Hooks/useDoctors';
 import { red } from '@mui/material/colors';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
+import SkeletonProvider from '../../../Shared/SkeletonProvider/SkeletonProvider';
 
 
 
 const Managedoctors = () => {
-    const { doctors, setdoctors } = usedoctors();
+    const { doctors, setdoctors, isLoading } = usedoctors();
     console.log(doctors)
     const deltedoctor = id => {
         const proceed = window.confirm('Are you Sure to delete this doctor? ')
@@ -29,6 +30,9 @@ const Managedoctors = () => {
         }
 
     }
+    if (isLoading) {
+        return <SkeletonProvider></SkeletonProvider>
+    }
     return (
         <div>
             <Typography variant='h5' style={{ color: '#18A3DD', fontWeight: 'bold', margin: '20px' }}>Manage doctors</Typography>
@@ -41,8 +45,8 @@ const Managedoctors = () => {
                             <TableRow>
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Thumbnail</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Name</TableCell>
-                                <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Price</TableCell>
-                                <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Description</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Designation</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Fees</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Delete</TableCell>
 
                             </TableRow>
@@ -57,8 +61,8 @@ const Managedoctors = () => {
 
                                     </TableCell>
                                     <TableCell align="center">{doctor.name}</TableCell>
-                                    <TableCell align="center">{doctor.price}</TableCell>
-                                    {/* <TableCell align="center">{doctor.description.slice(0, 50)}...</TableCell> */}
+                                    <TableCell align="center">{doctor.designation}</TableCell>
+                                    <TableCell align="center">{doctor.fees}</TableCell>
                                     <TableCell align="center"><Button onClick={() => deltedoctor(doctor._id)} sx={{ backgroundColor: red[500], color: '#1E1E1E', fontWeight: 'bold' }} startIcon={<DeleteIcon />} >Delete</Button></TableCell>
 
                                 </TableRow>

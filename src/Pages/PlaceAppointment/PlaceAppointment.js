@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import { Grid, Card, CardMedia, CardContent, Typography, Button, Container, TextField, Skeleton } from '@mui/material'
-import Calender from '../Shared/Calender';
+
 import { Box } from '@mui/system';
-import Headers from '../Shared/Headers/Headers';
+
+import Calender from '../../Shared/Calender/Calender';
+import Headers from '../../Shared/Header/Header';
 
 
 const PlaceAppointment = () => {
@@ -12,11 +14,15 @@ const PlaceAppointment = () => {
 
     const { id } = useParams();
     const [placedoctor, setPlacedoctor] = useState({})
-    const { name, image, description, price } = placedoctor
+    const { name, image, designation, fees } = placedoctor
+    const [fee, setFee] = useState(0)
     const [AppointmentData, setAppointmentData] = useState({})
     const [date, setDate] = useState(new Date());
-    console.log(AppointmentData)
-    const userAppointmentData = { name: user.displayName, email: user.email, date: date.toDateString(), doctor: placedoctor.name, price: price, status: 'Pending' }
+    console.log(placedoctor)
+    const userAppointmentData = { name: user.displayName, email: user.email, date: date.toDateString(), doctor: placedoctor.name, fees: fees, status: 'Pending' }
+
+
+
 
     const handleField = e => {
 
@@ -48,10 +54,12 @@ const PlaceAppointment = () => {
     }
 
     useEffect(() => {
-        const url = `http://localhost:5000/placeAppointment/${id}`
+        const url = `http://localhost:5000/placeappointment/${id}`
         fetch(url)
             .then(res => res.json())
-            .then(data => setPlacedoctor(data))
+            .then(data => setPlacedoctor(data)
+
+            )
     }, [id])
 
     if (isLoading) {
@@ -59,6 +67,17 @@ const PlaceAppointment = () => {
             <Skeleton variant="circular" width={500} height={100} />
             <Skeleton variant="rectangular" width={500} height={118} /></Box>
     }
+    // let discountMsg = '';
+    // if (fees) {
+    //     if (fees >= 25000) {
+    //         discountMsg = 'You have 20% off'
+    //         const newFees = (20 / 100) * fees.toFixed(2)
+    //         setFee(newFees)
+    //     }
+    //     else {
+    //         setFee(fees)
+    //     }
+    // }
     return (
         <div>
             <Headers></Headers>
@@ -81,7 +100,7 @@ const PlaceAppointment = () => {
                                     {name}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    {description}
+                                    {designation}
                                 </Typography>
                             </CardContent>
 
@@ -90,7 +109,7 @@ const PlaceAppointment = () => {
                     </Grid>
                     <Grid item xs={4}>
                         <Typography gutterBottom variant="h6" component="div" style={{ color: '#FF5252' }}>
-                            Expected Delivery Date
+                            Expected Appointment Date
                         </Typography>
                         <Calender date={date} setDate={setDate}></Calender>
                     </Grid>
@@ -139,6 +158,21 @@ const PlaceAppointment = () => {
                                 disabled
                                 onChange={handleField}
                                 variant="outlined" />
+                            <Typography variant="body2" color="text.secondary">
+                                Fees
+                            </Typography>
+                            <TextField
+                                sx={{ width: '75%', m: 1 }}
+                                id="standard-name9"
+                                type="text"
+                                name="fees"
+                                value={fees >= 25000 ? ((80 / 100) * fees).toFixed(2) : fees}
+                                disabled
+                                onChange={handleField}
+                                variant="outlined" />
+                            {fees >= 25000 ? <Typography variant="body2" color="text.secondary">
+                                *You Have 20% off
+                            </Typography> : ''}
                             <TextField
                                 sx={{ width: '75%', m: 1 }}
                                 id="standard-name5"

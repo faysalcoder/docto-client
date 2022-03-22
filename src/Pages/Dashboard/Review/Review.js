@@ -1,16 +1,27 @@
-import { TextField, Container, Button, Typography, Rating, Box } from '@mui/material';
-import React, { useState } from 'react';
+import { TextField, Container, Button, Typography, Rating, Box, MenuItem } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import useAuth from '../../../Hooks/useAuth';
+import useDoctors from '../../../Hooks/useDoctors';
 import usedoctors from '../../../Hooks/useDoctors';
 
 const Review = () => {
     const { user } = useAuth();
-    const { doctors } = usedoctors();
+
     const [reviewData, setReviewData] = useState({})
+    const { doctors } = useDoctors()
     const [rating, setRating] = useState(2);
-    console.log(reviewData)
+    // const [doctors, setDoctors] = useState([]);
+    const [doctorName, setDoctorName] = useState('')
+
+
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/doctors')
+    //         .then(res => res.json())
+    //         .then(data => setDoctors(data.doctors))
+    // }, [])
+
     const noImage = 'https://i.ibb.co/gwzZsXT/No-image-found.jpg'
-    const userData = { name: user.displayName, email: user.email, photoUrl: user.photoURL || noImage }
+    const userData = { name: user.displayName, email: user.email, photoUrl: user.photoURL || noImage, doctor: doctorName }
     const handleField = e => {
 
         const name = e.target.name;
@@ -18,8 +29,10 @@ const Review = () => {
 
         const newReviewData = { ...userData, ...reviewData, rating: rating }
         newReviewData[name] = value
+
         setReviewData(newReviewData)
-        console.log(user)
+
+
 
 
     }
@@ -34,10 +47,34 @@ const Review = () => {
             .then(res => res.json())
             .then(data => {
                 alert('Review Submitted')
+                console.log(data)
+                handleDoctorReview(userData)
             })
 
         e.preventDefault()
 
+    }
+    const handleDoctorReview = data => {
+        const { doctor } = data;
+        const rate = rating;
+        const rateData = { doctor, rate }
+
+        console.log(rateData)
+        fetch('http://localhost:5000/doctors/review', {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(rateData)
+        })
+            .then(res => res.json())
+            .then(data => {
+
+            })
+    }
+    const handleChange = e => {
+        setDoctorName(e.target.value)
+        console.log(e.target.value)
     }
     return (
         <div>
@@ -66,6 +103,26 @@ const Review = () => {
                         disabled
                         onChange={handleField}
                         variant="outlined" />
+
+                    {
+                        doctors?.length ? <TextField
+                            id="outlined-select-currency"
+                            select
+                            label="Select An Doctor"
+                            sx={{ width: '50%', m: 1 }}
+                            value={doctorName}
+                            onChange={handleChange}
+
+                            helperText="Please select an Doctor for Review"
+                        >
+                            {doctors.map(doctor => (<MenuItem key={doctor._id} value={doctor.name} >
+                                {doctor.name}
+                            </MenuItem>
+                            ))}
+                        </TextField> :
+                            <p> </p>
+                    }
+
                     <Box >
                         <Typography variant="h6">Rate Here</Typography>
                         <Rating
