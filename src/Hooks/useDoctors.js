@@ -5,7 +5,7 @@ const useDoctors = () => {
     const [doctors, setDoctors] = useState([])
     useEffect(() => {
         setIsLoading(true)
-        const url = 'http://localhost:5000/doctors'
+        const url = 'https://doctocare.herokuapp.com/doctors'
         fetch(url)
             .then(res => res.json())
             .then(data => setDoctors(data.doctors))

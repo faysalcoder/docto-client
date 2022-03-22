@@ -40,7 +40,7 @@ const PlaceAppointment = () => {
     }
 
     const handlePlaceAppointment = e => {
-        fetch('http://localhost:5000/placeAppointment/', {
+        fetch('https://doctocare.herokuapp.com/placeAppointment/', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -54,7 +54,7 @@ const PlaceAppointment = () => {
     }
 
     useEffect(() => {
-        const url = `http://localhost:5000/placeappointment/${id}`
+        const url = `https://doctocare.herokuapp.com/placeappointment/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setPlacedoctor(data)

@@ -15,7 +15,7 @@ const Review = () => {
 
 
     // useEffect(() => {
-    //     fetch('http://localhost:5000/doctors')
+    //     fetch('https://doctocare.herokuapp.com/doctors')
     //         .then(res => res.json())
     //         .then(data => setDoctors(data.doctors))
     // }, [])
@@ -37,7 +37,7 @@ const Review = () => {
 
     }
     const handleReviewField = e => {
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://doctocare.herokuapp.com/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -60,7 +60,7 @@ const Review = () => {
         const rateData = { doctor, rate }
 
         console.log(rateData)
-        fetch('http://localhost:5000/doctors/review', {
+        fetch('https://doctocare.herokuapp.com/doctors/review', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

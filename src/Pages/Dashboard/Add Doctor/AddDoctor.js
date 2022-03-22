@@ -14,7 +14,7 @@ const AddDoctor = () => {
         console.log(newdoctorData)
     }
     const handleAddDoctor = e => {
-        fetch('http://localhost:5000/doctors', {
+        fetch('https://doctocare.herokuapp.com/doctors', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

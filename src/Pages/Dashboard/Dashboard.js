@@ -34,6 +34,7 @@ import Pay from './Pay/Pay';
 import Review from './Review/Review';
 import useAuth from '../../Hooks/useAuth';
 import AdminRoute from '../../AdminRoute/AdminRoute';
+import ManageReviews from './ManageReviews/ManageReviews';
 const drawerWidth = 250;
 const Dashboard = (props) => {
 
@@ -128,6 +129,15 @@ const Dashboard = (props) => {
 
 
 
+                {
+                    admin && <Link to={`${url}/ManageReviews`} style={{ color: 'white', textDecoration: 'none', fontWeight: 'bold' }}>
+                        <ListItem button style={{ bAppointmentBottom: '2px solid #373737' }}>
+
+                            <ListItemText > Manage Reviews</ListItemText>
+                        </ListItem>
+
+                    </Link>
+                }
                 {
                     admin && <Link to={`${url}/ManageDoctors`} style={{ color: 'white', textDecoration: 'none', fontWeight: 'bold' }}>
                         <ListItem button style={{ bAppointmentBottom: '2px solid #373737' }}>
@@ -249,6 +259,9 @@ const Dashboard = (props) => {
                         </AdminRoute>
                         <AdminRoute path={`${path}/ManageDoctors`}>
                             <ManageDoctors></ManageDoctors>
+                        </AdminRoute>
+                        <AdminRoute path={`${path}/ManageReviews`}>
+                            <ManageReviews></ManageReviews>
                         </AdminRoute>
                         <Route path={`${path}/myAppointments`}>
                             <MyAppointments></MyAppointments>

@@ -5,7 +5,7 @@ const useAppointments = () => {
 
     const [appointments, setAppointments] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/Appointments')
+        fetch('https://doctocare.herokuapp.com/Appointments')
             .then(res => res.json())
             .then(data => {
                 setAppointments(data)
@@ -18,7 +18,7 @@ const useAppointments = () => {
 
 
 
-        const url = `http://localhost:5000/Appointments/${id}`;
+        const url = `https://doctocare.herokuapp.com/Appointments/${id}`;
         fetch(url, {
             method: 'DELETE'
         })
@@ -38,7 +38,7 @@ const useAppointments = () => {
     }
     const confirmAppointment = id => {
         const uniqueId = { AppointmentId: id }
-        fetch('http://localhost:5000/Appointments/confirm', {
+        fetch('https://doctocare.herokuapp.com/Appointments/confirm', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
