@@ -90,7 +90,7 @@ const useFirebase = () => {
     }, [])
     useEffect(() => {
         setIsLoading(true)
-        fetch(`https://doctocare.herokuapp.com/users/${user.email}`)
+        fetch(`http://localhost:5000/users/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setAdmin(data.admin)
@@ -102,7 +102,7 @@ const useFirebase = () => {
     }, [user.email])
     const handleUserDatabase = (name, email, method) => {
         const user = { name: name, email: email }
-        fetch('https://doctocare.herokuapp.com/users', {
+        fetch('http://localhost:5000/users', {
             method: method,
             headers: {
                 'content-type': 'application/json'

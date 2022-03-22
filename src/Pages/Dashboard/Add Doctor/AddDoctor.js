@@ -14,7 +14,7 @@ const AddDoctor = () => {
         console.log(newdoctorData)
     }
     const handleAddDoctor = e => {
-        fetch('https://doctocare.herokuapp.com/doctors', {
+        fetch('http://localhost:5000/doctors', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -30,7 +30,7 @@ const AddDoctor = () => {
     }
     return (
         <div>
-            <Typography variant='h5' style={{ color: '#18A3DD', fontWeight: 'bold', margin: '20px' }}>Review</Typography>
+            <Typography variant='h5' style={{ color: '#18A3DD', fontWeight: 'bold', margin: '20px' }}>Add Doctor</Typography>
             <form onSubmit={handleAddDoctor}>
                 <TextField onBlur={handleFieldValue} sx={{ width: '50%', m: 1 }} type="text" name="name" id="doctor-name" label="doctor Name" variant="standard" /> <br />
                 <TextField onBlur={handleFieldValue} sx={{ width: '50%', m: 1 }} type="text" name="image" id="image-url" label="Image Url" variant="standard" /> <br />

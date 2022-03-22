@@ -2,23 +2,23 @@ import { useEffect, useState } from "react"
 
 const useAppointments = () => {
     const [isLoading, setIsLoading] = useState(true)
-
+    const [approved, setApproved]=  useState(false)
     const [appointments, setAppointments] = useState([]);
     useEffect(() => {
-        fetch('https://doctocare.herokuapp.com/Appointments')
+        fetch('http://localhost:5000/Appointments')
             .then(res => res.json())
             .then(data => {
                 setAppointments(data)
                 setIsLoading(false)
             })
 
-    }, [])
+    }, [approved])
 
     const deleteAppointment = id => {
 
 
 
-        const url = `https://doctocare.herokuapp.com/Appointments/${id}`;
+        const url = `http://localhost:5000/appointments/${id}`;
         fetch(url, {
             method: 'DELETE'
         })
@@ -37,8 +37,8 @@ const useAppointments = () => {
 
     }
     const confirmAppointment = id => {
-        const uniqueId = { AppointmentId: id }
-        fetch('https://doctocare.herokuapp.com/Appointments/confirm', {
+        const uniqueId = { appointmentId: id }
+        fetch('http://localhost:5000/appointments/confirm', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -48,7 +48,9 @@ const useAppointments = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                return alert('Appointment Shipped')
+                setApproved(true)
+                return alert('Appointment Confirm')
+                
             })
     }
 

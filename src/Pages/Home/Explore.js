@@ -12,7 +12,7 @@ const Explore = () => {
   const size = 6;
 
   useEffect(() => {
-    fetch(`https://doctocare.herokuapp.com/doctors?page=${page}&&size=${size}`)
+    fetch(`http://localhost:5000/doctors?page=${page}&&size=${size}`)
       .then(res => res.json())
       .then(data => {
         setdoctors(data.doctors)

@@ -14,7 +14,7 @@ const Managedoctors = () => {
     const deltedoctor = id => {
         const proceed = window.confirm('Are you Sure to delete this doctor? ')
         if (proceed) {
-            const url = `https://doctocare.herokuapp.com/doctors/${id}`;
+            const url = `http://localhost:5000/doctors/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

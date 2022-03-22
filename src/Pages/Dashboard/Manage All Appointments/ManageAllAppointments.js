@@ -1,11 +1,12 @@
 import { TableContainer, Table, TableHead, TableRow, TableCell, Container, TableBody, Button, Typography } from '@mui/material';
 import React from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
 import useAppointments from '../../../Hooks/useAppointments';
-import { yellow } from '@mui/material/colors';
+import { yellow,red } from '@mui/material/colors';
 import SkeletonProvider from '../../../Shared/SkeletonProvider/SkeletonProvider';
 
 const ManageAllAppointments = () => {
-    const { appointments, confirmAppointment, isLoading } = useAppointments();
+    const { appointments, confirmAppointment, isLoading, deleteAppointment } = useAppointments();
     if (isLoading) {
         return <SkeletonProvider></SkeletonProvider>
     }
@@ -27,6 +28,7 @@ const ManageAllAppointments = () => {
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Adress</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Status</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center"></TableCell>
+                                <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center"></TableCell>
                             </TableRow>
                         </TableHead>
 
@@ -42,8 +44,9 @@ const ManageAllAppointments = () => {
                                     <TableCell align="center">{Appointment.date}</TableCell>
                                     <TableCell align="center">{Appointment.mobile}</TableCell>
                                     <TableCell align="center">{Appointment.adress}</TableCell>
-                                    <TableCell align="center">{Appointment.status !== 'Pending' ? 'Shipped' : 'Pending'}</TableCell>
+                                    <TableCell align="center">{Appointment.status ? 'Confirm' : 'Pending'}</TableCell>
                                     <TableCell align="center" ><Button onClick={() => confirmAppointment(Appointment._id)} sx={{ backgroundColor: yellow[500], color: '#1E1E1E', fontWeight: 'bold', mr: 1 }} >Shipped</Button></TableCell>
+                                     <TableCell align="center"><Button onClick={() => deleteAppointment(Appointment._id)} sx={{ backgroundColor: red[500], color: '#1E1E1E', fontWeight: 'bold' }} startIcon={<DeleteIcon />} >Delete</Button></TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

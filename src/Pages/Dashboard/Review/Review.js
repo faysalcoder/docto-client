@@ -15,13 +15,13 @@ const Review = () => {
 
 
     // useEffect(() => {
-    //     fetch('https://doctocare.herokuapp.com/doctors')
+    //     fetch('http://localhost:5000/doctors')
     //         .then(res => res.json())
     //         .then(data => setDoctors(data.doctors))
     // }, [])
 
     const noImage = 'https://i.ibb.co/gwzZsXT/No-image-found.jpg'
-    const userData = { name: user.displayName, email: user.email, photoUrl: user.photoURL || noImage, doctor: doctorName }
+    const userData = { name: user.displayName, email: user.email, photoUrl: user.photoURL || noImage, doctor: doctorName , status: false}
     const handleField = e => {
 
         const name = e.target.name;
@@ -37,7 +37,7 @@ const Review = () => {
 
     }
     const handleReviewField = e => {
-        fetch('https://doctocare.herokuapp.com/reviews', {
+        fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -60,7 +60,7 @@ const Review = () => {
         const rateData = { doctor, rate }
 
         console.log(rateData)
-        fetch('https://doctocare.herokuapp.com/doctors/review', {
+        fetch('http://localhost:5000/doctors/review', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

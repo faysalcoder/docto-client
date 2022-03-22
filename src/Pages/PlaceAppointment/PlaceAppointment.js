@@ -19,7 +19,7 @@ const PlaceAppointment = () => {
     const [AppointmentData, setAppointmentData] = useState({})
     const [date, setDate] = useState(new Date());
     console.log(placedoctor)
-    const userAppointmentData = { name: user.displayName, email: user.email, date: date.toDateString(), doctor: placedoctor.name, fees: fees, status: 'Pending' }
+    const userAppointmentData = { name: user.displayName, email: user.email, date: date.toDateString(), doctor: placedoctor.name, fees: fees, status: false}
 
 
 
@@ -40,7 +40,7 @@ const PlaceAppointment = () => {
     }
 
     const handlePlaceAppointment = e => {
-        fetch('https://doctocare.herokuapp.com/placeAppointment/', {
+        fetch('http://localhost:5000/placeAppointment/', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -48,13 +48,15 @@ const PlaceAppointment = () => {
             body: JSON.stringify(AppointmentData)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
+            .then(data => {
+                    alert('Your Request Under Process Untill it Confirm')
+            })
 
         e.preventDefault();
     }
 
     useEffect(() => {
-        const url = `https://doctocare.herokuapp.com/placeappointment/${id}`
+        const url = `http://localhost:5000/placeappointment/${id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setPlacedoctor(data)

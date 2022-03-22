@@ -1,28 +1,66 @@
 import { TableContainer, Table, TableHead, TableRow, TableCell, Container, TableBody, Button, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import useAppointments from '../../../Hooks/useAppointments';
-import { yellow } from '@mui/material/colors';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { red, yellow } from '@mui/material/colors';
 import SkeletonProvider from '../../../Shared/SkeletonProvider/SkeletonProvider';
 
 const ManageReviews = () => {
     
 const [isLoading, setIsLoading] = useState(true)
 const [reviews, setReviews]=useState([])
+const [approved, setApproved]=  useState(false)
    useEffect(()=>{
 setIsLoading(true)
-       fetch('https://doctocare.herokuapp.com/reviews')
+       fetch('http://localhost:5000/reviews')
        .then(res=> res.json())
        .then(data=>{
            setReviews(data)
            setIsLoading(false)
        })
-   },[])
+   },[approved])
+   const confirmReview = id => {
+    const uniqueId = { reviewId : id }
+    fetch('http://localhost:5000/reviews/confirm', {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(uniqueId)
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+setApproved(true)
+            return alert('Review Approved')
+        })
+}
+
+const deleteReview = id => {
+    const proceed = window.confirm('Are you Sure to delete this Review? ')
+    if (proceed) {
+        const url = `http://localhost:5000/reviews/${id}`;
+        fetch(url, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    alert('Delete Succesfully');
+                    const remindreviews = reviews.filter(review => review._id !== id)
+                    setReviews(remindreviews)
+                }
+            })
+
+    }
+
+}
     if (isLoading) {
         return <SkeletonProvider></SkeletonProvider>
     }
     return (
         <div>
-            <Typography variant='h4' style={{ color: '#18A3DD', fontWeight: 'bold', margin: '20px' }}>Manage all Appointments</Typography>
+            <Typography variant='h4' style={{ color: '#18A3DD', fontWeight: 'bold', margin: '20px' }}>Manage all Reviews</Typography>
             <Container maxWidth='lg'>
                 <TableContainer >
                     <Table sx={{ minWidth: 700, bAppointmentRadius: '10px' }} aria-label="customized table">
@@ -35,6 +73,7 @@ setIsLoading(true)
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Rating Date</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Review</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Status</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center"></TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center"></TableCell>
                             </TableRow>
                         </TableHead>
@@ -55,8 +94,9 @@ setIsLoading(true)
                                     <TableCell align="center">{review.rating}</TableCell>
                                     <TableCell align="center">{review.review}</TableCell>
                                     
-                                    {/* <TableCell align="center">{Appointment.status !== 'Pending' ? 'Shipped' : 'Pending'}</TableCell>
-                                    <TableCell align="center" ><Button onClick={() => confirmAppointment(Appointment._id)} sx={{ backgroundColor: yellow[500], color: '#1E1E1E', fontWeight: 'bold', mr: 1 }} >Shipped</Button></TableCell> */}
+                                    <TableCell align="center">{review.status ? 'Approved' : 'Pending'}</TableCell>
+                                    <TableCell align="center" ><Button onClick={() => confirmReview(review._id)} sx={{ backgroundColor: yellow[500], color: '#1E1E1E', fontWeight: 'bold', mr: 1 }} >Approve</Button></TableCell>
+                                    <TableCell align="center"><Button onClick={() => deleteReview(review._id)} sx={{ backgroundColor: red[500], color: '#1E1E1E', fontWeight: 'bold' }} startIcon={<DeleteIcon />} >Delete</Button></TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
