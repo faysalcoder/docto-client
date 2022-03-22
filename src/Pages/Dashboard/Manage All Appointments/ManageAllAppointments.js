@@ -2,7 +2,7 @@ import { TableContainer, Table, TableHead, TableRow, TableCell, Container, Table
 import React from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useAppointments from '../../../Hooks/useAppointments';
-import { yellow,red } from '@mui/material/colors';
+import { yellow, red } from '@mui/material/colors';
 import SkeletonProvider from '../../../Shared/SkeletonProvider/SkeletonProvider';
 
 const ManageAllAppointments = () => {
@@ -22,7 +22,7 @@ const ManageAllAppointments = () => {
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Name</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Email</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">doctor</TableCell>
-                                <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Price</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Fees</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Delivery Date</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Mobile</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Adress</TableCell>
@@ -40,13 +40,13 @@ const ManageAllAppointments = () => {
                                     </TableCell>
                                     <TableCell align="center">{Appointment.email}</TableCell>
                                     <TableCell align="center">{Appointment.doctor}</TableCell>
-                                    <TableCell align="center">{Appointment.price}</TableCell>
+                                    <TableCell align="center">{Appointment.fees >= 25000 ? ((80 / 100) * Appointment.fees).toFixed(0) : Appointment.fees}</TableCell>
                                     <TableCell align="center">{Appointment.date}</TableCell>
                                     <TableCell align="center">{Appointment.mobile}</TableCell>
                                     <TableCell align="center">{Appointment.adress}</TableCell>
                                     <TableCell align="center">{Appointment.status ? 'Confirm' : 'Pending'}</TableCell>
                                     <TableCell align="center" ><Button onClick={() => confirmAppointment(Appointment._id)} sx={{ backgroundColor: yellow[500], color: '#1E1E1E', fontWeight: 'bold', mr: 1 }} >Shipped</Button></TableCell>
-                                     <TableCell align="center"><Button onClick={() => deleteAppointment(Appointment._id)} sx={{ backgroundColor: red[500], color: '#1E1E1E', fontWeight: 'bold' }} startIcon={<DeleteIcon />} >Delete</Button></TableCell>
+                                    <TableCell align="center"><Button onClick={() => deleteAppointment(Appointment._id)} sx={{ backgroundColor: red[500], color: '#1E1E1E', fontWeight: 'bold' }} startIcon={<DeleteIcon />} >Delete</Button></TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

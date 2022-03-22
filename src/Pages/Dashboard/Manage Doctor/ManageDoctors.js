@@ -1,7 +1,7 @@
 import React from 'react';
 import { TableContainer, Table, TableHead, TableRow, TableCell, Container, TableBody, Button, Typography } from '@mui/material';
 import usedoctors from '../../../Hooks/useDoctors';
-import { red } from '@mui/material/colors';
+import { green, red } from '@mui/material/colors';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 import SkeletonProvider from '../../../Shared/SkeletonProvider/SkeletonProvider';
@@ -49,6 +49,7 @@ const Managedoctors = () => {
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Fees</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: 'white' }} align="center">Delete</TableCell>
 
+
                             </TableRow>
                         </TableHead>
 
@@ -64,6 +65,7 @@ const Managedoctors = () => {
                                     <TableCell align="center">{doctor.designation}</TableCell>
                                     <TableCell align="center">{doctor.fees}</TableCell>
                                     <TableCell align="center"><Button onClick={() => deltedoctor(doctor._id)} sx={{ backgroundColor: red[500], color: '#1E1E1E', fontWeight: 'bold' }} startIcon={<DeleteIcon />} >Delete</Button></TableCell>
+
 
                                 </TableRow>
                             ))}

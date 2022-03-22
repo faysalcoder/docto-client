@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import Review from './Review';
+import PrivateRoute from '../../../PrivateRoute/PrivateRoute';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -21,7 +22,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const BootstrapDialogTitle = (props) => {
-  const { children, onClose, ...other } = props;
+  const { children, review, onClose, ...other } = props;
+  console.log(other)
 
   return (
     <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
@@ -73,7 +75,8 @@ export default function CustomizedDialogs() {
           Doctor Review
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <Review></Review>
+          <PrivateRoute> <Review></Review></PrivateRoute>
+
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose}>

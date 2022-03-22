@@ -6,6 +6,8 @@ import Explore from './Explore';
 import Footer from '../../Shared/Footer/Footer';
 import Contact from '../Contact/Contact';
 import autoprefixer from 'autoprefixer';
+import Review from '../Dashboard/Review/Review';
+import PrivateRoute from '../../PrivateRoute/PrivateRoute';
 
 const Home = () => {
     return (
@@ -13,9 +15,12 @@ const Home = () => {
             <Header></Header>
             <Banner></Banner>
             <Explore></Explore>
+
             <div style={{ margin: '0 auto', display: 'flex', justifyContent: "center" }}>
                 <BootstrapDialogTitle></BootstrapDialogTitle>
             </div>
+
+
 
             <Contact></Contact>
             <Footer></Footer>
