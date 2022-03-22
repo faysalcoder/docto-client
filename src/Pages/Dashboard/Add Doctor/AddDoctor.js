@@ -14,7 +14,7 @@ const AddDoctor = () => {
         console.log(newdoctorData)
     }
     const handleAddDoctor = e => {
-        fetch('http://localhost:5000/doctors', {
+        fetch(' https://infinite-wildwood-46291.herokuapp.com/doctors', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

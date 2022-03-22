@@ -5,7 +5,7 @@ const useAppointments = () => {
     const [approved, setApproved]=  useState(false)
     const [appointments, setAppointments] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/Appointments')
+        fetch(' https://infinite-wildwood-46291.herokuapp.com/Appointments')
             .then(res => res.json())
             .then(data => {
                 setAppointments(data)
@@ -18,7 +18,7 @@ const useAppointments = () => {
 
 
 
-        const url = `http://localhost:5000/appointments/${id}`;
+        const url = ` https://infinite-wildwood-46291.herokuapp.com/appointments/${id}`;
         fetch(url, {
             method: 'DELETE'
         })
@@ -38,7 +38,7 @@ const useAppointments = () => {
     }
     const confirmAppointment = id => {
         const uniqueId = { appointmentId: id }
-        fetch('http://localhost:5000/appointments/confirm', {
+        fetch(' https://infinite-wildwood-46291.herokuapp.com/appointments/confirm', {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

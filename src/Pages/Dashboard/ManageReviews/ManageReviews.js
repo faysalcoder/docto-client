@@ -12,7 +12,7 @@ const [reviews, setReviews]=useState([])
 const [approved, setApproved]=  useState(false)
    useEffect(()=>{
 setIsLoading(true)
-       fetch('http://localhost:5000/reviews')
+       fetch(' https://infinite-wildwood-46291.herokuapp.com/reviews')
        .then(res=> res.json())
        .then(data=>{
            setReviews(data)
@@ -21,7 +21,7 @@ setIsLoading(true)
    },[approved])
    const confirmReview = id => {
     const uniqueId = { reviewId : id }
-    fetch('http://localhost:5000/reviews/confirm', {
+    fetch(' https://infinite-wildwood-46291.herokuapp.com/reviews/confirm', {
         method: 'PUT',
         headers: {
             'content-type': 'application/json'
@@ -39,7 +39,7 @@ setApproved(true)
 const deleteReview = id => {
     const proceed = window.confirm('Are you Sure to delete this Review? ')
     if (proceed) {
-        const url = `http://localhost:5000/reviews/${id}`;
+        const url = ` https://infinite-wildwood-46291.herokuapp.com/reviews/${id}`;
         fetch(url, {
             method: 'DELETE'
         })
